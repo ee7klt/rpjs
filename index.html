@@ -4,19 +4,35 @@
 <script src="jquery.js"></script> <script src="underscore.js"></script> <script src="backbone.js"></script>
 <script>
     //TODO write some awesome JS code!
+    var app;
     var router = backbone.router.extend({
     	routes: {
     		'':'home'
     	},
-    	home: function () {
+    	
+    		initialize: function() {
 
-    	}
+    		},
+    		home: function() {
+    			this.homeView = new homeView;
+    			this.homeView.render();
+    		}
+
     });
 
     var homeView = backbone.view.extend({
     	el: 'body',
-    	template: _.template('Hello World')
+    	template: _.template('Hello World'),
+    	render: function() {
+    		this.$el.html(this.template({}));
+    	}
     });
+
+   
+    $(document).ready(function(){
+    	app = new router;
+    	backbone.history.start();
+    })
 
 
 </script>
